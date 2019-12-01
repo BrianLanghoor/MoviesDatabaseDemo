@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MoviesDatabase.Controllers
@@ -14,25 +15,25 @@ namespace MoviesDatabase.Controllers
             Movies = new List<Movie>
             {
                 new Movie { Id= 1, Title = "Jumanji", year = 1996 },
-                new Movie { Id= 2, Title = "The good the bad and the ugly", year = 1996 },
-                new Movie { Id= 3, Title = "The godfather", year = 1996 },
-                new Movie { Id= 4, Title = "Inception", year = 1996 },
-                new Movie { Id= 5, Title = "Office christmas party", year = 1996 },
+                new Movie { Id= 2, Title = "The good the bad and the ugly", year = 1966 },
+                new Movie { Id= 3, Title = "The godfather", year = 1972 },
+                new Movie { Id= 4, Title = "Inception", year = 2010 },
+                new Movie { Id= 5, Title = "Office christmas party", year = 2016 },
             };
         }
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<List<Movie>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(Movies);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Movie> Get(int id)
         {
-            return "value";
+            return Ok(Movies.Single(x => x.Id == id));
         }
     }
 }
